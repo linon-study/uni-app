@@ -1,0 +1,64 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/home/taskDetails"
+		},
+		{
+			"path": "pages/message/message",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},
+		{
+			"path": "pages/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "components/login/loginContainer"
+		},
+		{
+			"path": "components/login/PhoneNumLogin"
+		},
+		{
+			"path": "components/webView/webView"
+		}
+	],
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3d76cb",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/home/home",
+				"iconPath": "./static/img/icon/home_unselect.png",
+				"selectedIconPath": "./static/img/icon/home_select.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/message/message",
+				"iconPath": "./static/img/icon/message_unselect.png",
+				"selectedIconPath": "./static/img/icon/message_select.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/my/my",
+				"iconPath": "./static/img/icon/my_unselect.png",
+				"selectedIconPath": "./static/img/icon/my_select.png",
+				"text": "我的"
+			}
+		]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "light",
+		"navigationBarBackgroundColor": "#2773ff",
+		"backgroundColor": "#FFFFFF"
+	}
+}

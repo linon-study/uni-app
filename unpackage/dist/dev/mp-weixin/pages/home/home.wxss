@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+  min-height: 100%;
+}
+.container .head {
+  position: relative;
+  height: 480rpx;
+}
+.container .head image {
+  width: 100%;
+}
+.container .head .common {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.container .head .no_login text {
+  line-height: 50rpx;
+  color: #fff;
+  font-size: 36rpx;
+  margin: 0 0 20rpx 0;
+}
+.container .head .no_login button {
+  margin: 0;
+  display: inline-block;
+  width: 160rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #FD9A00;
+  font-size: 28rpx;
+  color: #fff;
+}
+.container .head .noIntegral text {
+  color: #fff;
+  font-size: 36rpx;
+}
+.container .head .integral text {
+  font-size: 36rpx;
+  color: #FFFFFF;
+}
+.container .head .integral .num {
+  color: #FFFFFF;
+  font-size: 72rpx;
+  font-family: 'PingFangSC-Semibold';
+}
+.container .head .integral button {
+  width: 160rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #fd9a00;
+  font-size: 24rpx;
+  color: white;
+}
+.container .content {
+  padding: 0 20rpx;
+}
+.container .content .recomond {
+  border-bottom: 1px solid #e5e5e5;
+  height: 112rpx;
+  line-height: 112rpx;
+}
+.container .content .recomond text {
+  font-size: 34rpx;
+  color: #333;
+  font-weight: bold;
+}
+.container .content .recomond view {
+  display: inline-block;
+  float: right;
+}
+.container .content .recomond view text {
+  font-size: 28rpx;
+  color: #666;
+}
+.container .content .recomond view image {
+  width: 14rpx;
+  height: 22rpx;
+  margin: 0 0 0 8rpx;
+}
+
