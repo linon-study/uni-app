@@ -265,7 +265,8 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
               }
             }
 
-            if (_this.userInfo == 1) {
+            console.log('_this.userInfo....', _this.userInfo);
+            if (_this.userInfo.type == 1) {
               _this.getTaskListAction(values.join(''));
             }
             // let cityName = ''
