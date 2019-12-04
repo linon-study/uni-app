@@ -11,6 +11,7 @@ const state = {
 	cityCode: null,
 	provinceCityCode: null,
 	bindMobile: null,
+	smsCode: null,
 }
 
 export default {

@@ -2460,7 +2460,7 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 120:
+/***/ 121:
 /*!*****************************************************************************************!*\
   !*** D:/project/weixin/flx-uniapp/node_modules/@dcloudio/uni-ui/lib/uni-icons/icons.js ***!
   \*****************************************************************************************/
@@ -2586,6 +2586,123 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
+/***/ 143:
+/*!*************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/modules/message.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = __webpack_require__(/*! ../actions/message */ 144);
+var _message2 = __webpack_require__(/*! ../getters/message */ 146);
+var _message3 = __webpack_require__(/*! ../mutations/message */ 147);
+
+var state = {
+  messageList: [] };var _default =
+
+
+{
+  namespaced: true,
+  state: state,
+  actions: _message.actions,
+  getters: _message2.getters,
+  mutations: _message3.mutations };exports.default = _default;
+
+/***/ }),
+
+/***/ 144:
+/*!*************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/actions/message.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
+
+
+
+var _message = __webpack_require__(/*! ../../utils/message */ 145);function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}
+
+
+
+var actions = {
+  //任务列表
+  getMessageListAction: function getMessageListAction(_ref,
+
+  params) {var commit = _ref.commit;
+    console.log('params......', params);
+    return (0, _message.getMessageListUtils)(params).
+    then(function (data) {
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.MESSAGE_LIST, data.items);
+      }
+    }).
+    catch(function (err) {
+      throw err;
+    });
+  } };exports.actions = actions;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 145:
+/*!*****************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/utils/message.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getMessageListUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+//获取消息列表
+var getMessageListUtils = function getMessageListUtils(params) {
+  var url = 'messagemgm/v1/messages' + params;
+  return _request.default.get(url, params);
+};exports.getMessageListUtils = getMessageListUtils;
+
+/***/ }),
+
+/***/ 146:
+/*!*************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/getters/message.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getters = void 0;var getters = {
+  dontTokens: function dontTokens(state) {
+    return state.tokens;
+  } };exports.getters = getters;
+
+/***/ }),
+
+/***/ 147:
+/*!***************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/mutations/message.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.mutations = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+var mutations = _defineProperty({},
+types.MESSAGE_LIST, function (state, data) {
+  state.messageList = data;
+});exports.mutations = mutations;
+
+/***/ }),
+
 /***/ 16:
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -2704,14 +2821,16 @@ function normalizeComponent (
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
 var _authed = _interopRequireDefault(__webpack_require__(/*! ./modules/authed */ 18));
-var _home = _interopRequireDefault(__webpack_require__(/*! ./modules/home */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _home = _interopRequireDefault(__webpack_require__(/*! ./modules/home */ 25));
+var _message = _interopRequireDefault(__webpack_require__(/*! ./modules/message */ 143));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 _vue.default.use(_vuex.default);
 
 var store = new _vuex.default.Store({
   modules: {
     authed: _authed.default,
-    home: _home.default } });var _default =
+    home: _home.default,
+    message: _message.default } });var _default =
 
 
 
@@ -2739,7 +2858,8 @@ var state = {
   latitudeAndLongitude: null,
   cityCode: null,
   provinceCityCode: null,
-  bindMobile: null };var _default =
+  bindMobile: null,
+  smsCode: null };var _default =
 
 
 {
@@ -2759,11 +2879,12 @@ var state = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
 
 
 
 var _authed = __webpack_require__(/*! ../../utils/authed */ 21);function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}
+
 
 
 
@@ -2777,7 +2898,15 @@ var actions = {
     console.log('params......', params);
     return (0, _authed.getTokenByCodeUtils)(params).
     then(function (data) {
-      commit(types.TOKEN_BY_CODE, data);
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.TOKEN_BY_CODE, data);
+      }
       return data;
     }).
     catch(function (err) {
@@ -2791,8 +2920,17 @@ var actions = {
     console.log('params......', params);
     return (0, _authed.getCityNameUtils)(params).
     then(function (data) {
-      commit(types.CITY_CODE, data, params);
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.CITY_CODE, data, params);
+      }
       return data;
+
     }).
     catch(function (err) {
       throw err;
@@ -2805,7 +2943,15 @@ var actions = {
     console.log('params......', params);
     return (0, _authed.getProvinceCityCodeUtils)(params).
     then(function (data) {
-      commit(types.PROVINCE_CITY_CODE, data);
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.PROVINCE_CITY_CODE, data);
+      }
       return data;
     }).
     catch(function (err) {
@@ -2819,13 +2965,48 @@ var actions = {
     console.log('params......', params);
     return (0, _authed.getBindMobileActionUtils)(params).
     then(function (data) {
-      commit(types.TOKEN_BY_CODE, data);
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.TOKEN_BY_CODE, data);
+        uni.reLaunch({
+          url: '../../pages/home/home' });
+
+      }
+      return data;
+
+    }).
+    catch(function (err) {
+      throw err;
+    });
+  },
+
+  getSmsCodeAction: function getSmsCodeAction(_ref5,
+
+  params) {var commit = _ref5.commit;
+    console.log('params......', params);
+    return (0, _authed.getSmsCodeActionUtils)(params).
+    then(function (data) {
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.SMS_CODE, data);
+      }
       return data;
     }).
     catch(function (err) {
       throw err;
     });
   } };exports.actions = actions;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -8800,16 +8981,23 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.TASK_DETAILS = exports.TASK_LIST = exports.PROVINCE_CITY_CODE = exports.CITY_CODE = exports.TOKEN_BY_CODE = void 0; //登录
+Object.defineProperty(exports, "__esModule", { value: true });exports.MESSAGE_LIST = exports.INDIVIDUAL_POINTS = exports.WITHDRAW_CHECK = exports.RECOMMENT_TASK = exports.TASK_DETAILS = exports.TASK_LIST = exports.SMS_CODE = exports.PROVINCE_CITY_CODE = exports.CITY_CODE = exports.GET_LOCATION = exports.TOKEN_BY_CODE = void 0; //登录
 var TOKEN_BY_CODE = 'TOKEN_BY_CODE';exports.TOKEN_BY_CODE = TOKEN_BY_CODE;
+var GET_LOCATION = 'GET_LOCATION';exports.GET_LOCATION = GET_LOCATION;
 var CITY_CODE = 'CITY_CODE';exports.CITY_CODE = CITY_CODE;
-var PROVINCE_CITY_CODE = 'PROVINCE_CITY_CODE';
-// export const BIND_MOBILE = 'BIND_MOBILE';
+var PROVINCE_CITY_CODE = 'PROVINCE_CITY_CODE';exports.PROVINCE_CITY_CODE = PROVINCE_CITY_CODE;
+var SMS_CODE = 'SMS_CODE';
 
 
 //首页
-exports.PROVINCE_CITY_CODE = PROVINCE_CITY_CODE;var TASK_LIST = 'TASK_LIST';exports.TASK_LIST = TASK_LIST;
+exports.SMS_CODE = SMS_CODE;var TASK_LIST = 'TASK_LIST';exports.TASK_LIST = TASK_LIST;
 var TASK_DETAILS = 'TASK_DETAILS';exports.TASK_DETAILS = TASK_DETAILS;
+var RECOMMENT_TASK = 'RECOMMENT_TASK';exports.RECOMMENT_TASK = RECOMMENT_TASK;
+var WITHDRAW_CHECK = 'WITHDRAW_CHECK';exports.WITHDRAW_CHECK = WITHDRAW_CHECK;
+var INDIVIDUAL_POINTS = 'INDIVIDUAL_POINTS';
+
+//消息
+exports.INDIVIDUAL_POINTS = INDIVIDUAL_POINTS;var MESSAGE_LIST = 'MESSAGE_LIST';exports.MESSAGE_LIST = MESSAGE_LIST;
 
 /***/ }),
 
@@ -8821,7 +9009,7 @@ var TASK_DETAILS = 'TASK_DETAILS';exports.TASK_DETAILS = TASK_DETAILS;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getBindMobileActionUtils = exports.getProvinceCityCodeUtils = exports.getCityNameUtils = exports.getTokenByCodeUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getSmsCodeActionUtils = exports.getBindMobileActionUtils = exports.getProvinceCityCodeUtils = exports.getCityNameUtils = exports.getTokenByCodeUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 //获取tokens
 var getTokenByCodeUtils = function getTokenByCodeUtils(params) {
@@ -8845,7 +9033,13 @@ exports.getCityNameUtils = getCityNameUtils;var getProvinceCityCodeUtils = funct
 exports.getProvinceCityCodeUtils = getProvinceCityCodeUtils;var getBindMobileActionUtils = function getBindMobileActionUtils(params) {
   var url = 'uaa/v1/users/op/bind-mobile';
   return _request.default.post(url, params);
-};exports.getBindMobileActionUtils = getBindMobileActionUtils;
+};
+
+//发送验证码
+exports.getBindMobileActionUtils = getBindMobileActionUtils;var getSmsCodeActionUtils = function getSmsCodeActionUtils(params) {
+  var url = 'sms/v1/sms_codes';
+  return _request.default.post(url, params);
+};exports.getSmsCodeActionUtils = getSmsCodeActionUtils;
 
 /***/ }),
 
@@ -8915,6 +9109,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.mutations 
 var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ../../static/js/wechat-request.js */ 13));var _mutations;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 var mutations = (_mutations = {}, _defineProperty(_mutations,
+
 types.TOKEN_BY_CODE, function (state, data) {
   var isLogin = data.user.type == 1 ? true : false;
   var Authorization = "Bearer " + data.access_token;
@@ -8925,13 +9120,22 @@ types.TOKEN_BY_CODE, function (state, data) {
   state.Authorization = Authorization;
   state.userInfo = data.user;
   state.isLogin = isLogin;
+}), _defineProperty(_mutations, "getLocationMutations", function getLocationMutations(
+
+state, data) {
+  state.latitudeAndLongitude = data;
 }), _defineProperty(_mutations,
+
 types.CITY_CODE, function (state, data, params) {
   state.cityCode = data;
-  state.latitudeAndLongitude = params;
 }), _defineProperty(_mutations,
+
 types.PROVINCE_CITY_CODE, function (state, data) {
   state.provinceCityCode = data;
+}), _defineProperty(_mutations,
+
+types.SMS_CODE, function (state, data) {
+  state.smsCode = data;
 }), _mutations);exports.mutations = mutations;
 
 /***/ }),
@@ -8950,7 +9154,10 @@ var _home3 = __webpack_require__(/*! ../mutations/home */ 29);
 
 var state = {
   taskList: [],
-  taskDetails: {} };var _default =
+  taskDetails: {},
+  singTaskList: {},
+  withdrawCheck: {},
+  individualPoints: {} };var _default =
 
 
 {
@@ -8970,7 +9177,7 @@ var state = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
 
 
 
@@ -8979,32 +9186,125 @@ var _home = __webpack_require__(/*! ../../utils/home */ 27);function _interopReq
 
 
 
+
+
+
 var actions = {
+  //任务列表
   getTaskListAction: function getTaskListAction(_ref,
 
   params) {var commit = _ref.commit;
     console.log('params......', params);
     return (0, _home.getTaskListUtils)(params).
     then(function (data) {
-      commit(types.TASK_LIST, data.items);
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.TASK_LIST, data.items);
+      }
+      return data;
     }).
     catch(function (err) {
       throw err;
     });
   },
 
+  //任务详情
   getTaskDetailsAction: function getTaskDetailsAction(_ref2,
 
   params) {var commit = _ref2.commit;
     console.log('params......', params);
     return (0, _home.getTaskDetailsUtils)(params).
     then(function (data) {
-      commit(types.TASK_DETAILS, data);
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.TASK_DETAILS, data);
+      }
+      return data;
+    }).
+    catch(function (err) {
+      throw err;
+    });
+  },
+
+  //打卡任务列表
+  getRecommentdTaskAction: function getRecommentdTaskAction(_ref3,
+
+  params) {var commit = _ref3.commit;
+    console.log('params......', params);
+    return (0, _home.getRecommentdTaskUtils)(params).
+    then(function (data) {
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.RECOMMENT_TASK, data);
+      }
+      return data;
+    }).
+    catch(function (err) {
+      throw err;
+    });
+  },
+
+  //验证是否有提现功能
+  getWithdrawCheckAction: function getWithdrawCheckAction(_ref4,
+
+  params) {var commit = _ref4.commit;
+    console.log('params......', params);
+    return (0, _home.getWithdrawCheckUtils)(params).
+    then(function (data) {
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.WITHDRAW_CHECK, data);
+      }
+      return data;
+    }).
+    catch(function (err) {
+      throw err;
+    });
+  },
+
+  //获取个人积分
+  getIndividualPointsAction: function getIndividualPointsAction(_ref5,
+
+  params) {var commit = _ref5.commit;
+    console.log('params......', params);
+    return (0, _home.getIndividualPointsUtils)(params).
+    then(function (data) {
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.INDIVIDUAL_POINTS, data);
+      }
+      return data;
     }).
     catch(function (err) {
       throw err;
     });
   } };exports.actions = actions;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -9016,7 +9316,7 @@ var actions = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getTaskDetailsUtils = exports.getTaskListUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getIndividualPointsUtils = exports.getWithdrawCheckUtils = exports.getRecommentdTaskUtils = exports.getTaskDetailsUtils = exports.getTaskListUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 //获取任务列表
 var getTaskListUtils = function getTaskListUtils(params) {
@@ -9028,7 +9328,25 @@ var getTaskListUtils = function getTaskListUtils(params) {
 exports.getTaskListUtils = getTaskListUtils;var getTaskDetailsUtils = function getTaskDetailsUtils(params) {
   var url = 'socialwork/v1/jobs/' + params.id;
   return _request.default.get(url, params);
-};exports.getTaskDetailsUtils = getTaskDetailsUtils;
+};
+
+//获取推荐任务
+exports.getTaskDetailsUtils = getTaskDetailsUtils;var getRecommentdTaskUtils = function getRecommentdTaskUtils(params) {
+  var url = 'socialwork/v1/sign-tasks' + params;
+  return _request.default.get(url, params);
+};
+
+//验证是否有提现功能
+exports.getRecommentdTaskUtils = getRecommentdTaskUtils;var getWithdrawCheckUtils = function getWithdrawCheckUtils(params) {
+  var url = 'socialwork/v1/withdraw-check';
+  return _request.default.get(url, params);
+};
+
+//获取个人积分
+exports.getWithdrawCheckUtils = getWithdrawCheckUtils;var getIndividualPointsUtils = function getIndividualPointsUtils(params) {
+  var url = 'walletmgm/v1/points-account';
+  return _request.default.get(url, params);
+};exports.getIndividualPointsUtils = getIndividualPointsUtils;
 
 /***/ }),
 
@@ -9075,6 +9393,15 @@ types.TASK_LIST, function (state, data) {
 }), _defineProperty(_mutations,
 types.TASK_DETAILS, function (state, data) {
   state.taskDetails = data;
+}), _defineProperty(_mutations,
+types.RECOMMENT_TASK, function (state, data) {
+  state.singTaskList = data;
+}), _defineProperty(_mutations,
+types.WITHDRAW_CHECK, function (state, data) {
+  state.withdrawCheck = data;
+}), _defineProperty(_mutations,
+types.INDIVIDUAL_POINTS, function (state, data) {
+  state.individualPoints = data;
 }), _mutations);exports.mutations = mutations;
 
 /***/ }),
@@ -9107,6 +9434,147 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+
+/***/ 30:
+/*!******************************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/js_sdk/fshjie-formvalidate/ys-validate.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+var numberReg = /^-?[1-9][0-9]?.?[0-9]*$/;
+var intReg = /^-?[1-9][0-9]*$/;
+var phoneReg = /^1[0-9]{10,10}$/;
+var emailReg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+var pwdReg = /^.{6,16}$/;
+var inviteCodeReg = /^[a-zA-Z0-9]{6,16}$/;var _default =
+
+{
+  isNumber: function isNumber(val) {
+    return numberReg.test(val);
+  },
+  isInt: function isInt(val) {
+    return intReg.test(val);
+  },
+  isPhone: function isPhone(val) {
+    return phoneReg.test(val);
+  },
+  isEmail: function isEmail(val) {
+    return emailReg.test(val);
+  },
+  isPwd: function isPwd(val) {
+    return pwdReg.test(val);
+  },
+  isInviteCode: function isInviteCode(val) {
+    return inviteCodeReg.test(val);
+  },
+  validate: function validate(data, rules) {
+    var res = { isOk: true, errmsg: '' };
+    if (!rules || !rules.length) {
+      return res;
+    }var _iteratorNormalCompletion = true;var _didIteratorError = false;var _iteratorError = undefined;try {
+      for (var _iterator = rules[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {var rule = _step.value;
+        // rule: {name:'', type:'', errmsg:'', min:1, max:2, eq:'', required:Boolean, regex:''}
+        if (!rule || !rule.name || !rule.type) {
+          continue;
+        }
+
+        // 如果值不存在
+        if (!data[rule.name]) {
+          // 如果是必填项就返回错误提示，required可以作为type是为了不同的type能给用户不同的提示
+          if (rule.type === 'required' || rule.required) {
+            res = { isOk: false, errmsg: rule.errmsg };
+            if (!res.errmsg) {
+              res.errmsg = '请正确输入所有数据'; //默认提示
+            }
+            return res;
+          }
+          // 如果不是必填项就跳过
+          continue;
+        }
+        switch (rule.type) {
+          // required 上面已经判断过了
+          case 'equals':
+          case 'eq':
+            if (data[rule.name] !== data[rule.eqName]) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'number':
+            if (!numberReg.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'int':
+            if (!intReg.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'phone':
+            if (!phoneReg.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'email':
+            if (!emailReg.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'pwd':
+            if (!pwdReg.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'inviteCode':
+            if (!inviteCodeReg.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'range': // 数字类型的值取值范围
+            // {name: 'xxx', type: 'range', min: 6, max: 6, required: true, errmsg: 'xxx'}
+            var val = data[rule.name];
+            if (val) {
+              if (numberReg.test(val)) {
+                if (rule.min && val < rule.min) {
+                  res = { isOk: false, errmsg: rule.errmsg };
+                } else if (rule.max && val > rule.max) {
+                  res = { isOk: false, errmsg: rule.errmsg };
+                }
+              } else {
+                res = { isOk: false, errmsg: rule.errmsg };
+              }
+            }
+            break;
+          case 'lengthRange': // 字符串长度取值范围
+            // {name: 'xxx', type: 'lengthRange', min: 6, max: 6, errmsg: 'xxx'}
+            var le = data[rule.name] ? data[rule.name].length : 0;
+            if (rule.min && le < rule.min) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            } else if (rule.max && le > rule.max) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;
+          case 'regex': // 自定义正则表达式
+            // {name: 'xxx', type: 'regex', regex: /^1[0-9]{10,10}$/, errmsg: 'xxx'}
+            if (rule.regex && !rule.regex.test(data[rule.name])) {
+              res = { isOk: false, errmsg: rule.errmsg };
+            }
+            break;}
+
+        // 发现任何一个错误就立即返回，后面的不再判断
+        if (!res.isOk) {
+          if (!res.errmsg) {
+            res.errmsg = '请正确输入所有数据'; //默认提示
+          }
+          return res;
+        }
+      }} catch (err) {_didIteratorError = true;_iteratorError = err;} finally {try {if (!_iteratorNormalCompletion && _iterator.return != null) {_iterator.return();}} finally {if (_didIteratorError) {throw _iteratorError;}}}
+    return res;
+  } };exports.default = _default;
 
 /***/ }),
 

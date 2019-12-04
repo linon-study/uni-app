@@ -8,29 +8,29 @@
 	import wxRequest from './static/js/wechat-request.js';
 
 	export default {
-		
+
 		globalData: {
 			OSSUrl: "https://oss.workai.com.cn/",
 			// baseUrl: "https://api.workai.com.cn/", // 线上环境
-		
+
 			// OSSUrl: "https://oss.engma.net/",          //苏州英格玛人力资源有限公司(小英领活)  专用
 			// baseUrl: "https://api.engma.net/",         //苏州英格玛人力资源有限公司(小英领活)  专用
-		
+
 			// OSSUrl: "https://oss.qidianren.com/",      //武汉起点人力资源股份有限公司(起点灵创)  专用
 			// baseUrl: "https://hroapi.qidianren.com/",  //武汉起点人力资源股份有限公司(起点灵创)  专用
-		
+
 			// OSSUrl: "https://oss.fjhxrl.com/",            //海峡人力云(浙江)智能科技有限公司(海峡人力云)  专用
 			// baseUrl: "https://api.fjhxrl.com/",           //海峡人力云(浙江)智能科技有限公司(海峡人力云)  专用
-		
+
 			// baseUrl: "http://47.110.158.110:20000/",  // 测试环境
 			baseUrl: 'http://47.110.250.177:20000/',
 			// baseUrl: "http://118.178.181.180:20000/",
-		
+
 			// baseUrl: "http://47.110.91.56:20000/", // 预生产环境
-		
-		
+
+
 			"appId": "wxd77d768a54c1a6ed", //社会化用工
-			// "appId":'wxacb81f2785bbed2b'//方圆零工
+			// "appId": 'wxacb81f2785bbed2b' //方圆零工
 			// "appId": 'wxa3306c52497202a4'//天宇人力
 			// "appId": 'wx0b015904869974f2'//三一(石力速派)
 			// "appId": 'wxb6d75b24391c6d9e'//幺零幺零工
@@ -87,15 +87,15 @@
 			// "appId": "wxf79b44460627567a",//桐城市易才网络科技服务有限公司（光宇众包）
 			// "appId": "wx60bb68e6deab4cd9",//迈维(辽宁)人力资源服务有限公司（迈维小蜜蜂）
 			// "appId": "wx4f4a1518d86c945a",//西昌中才人力资源服务有限责任公司（中才人力）
-		
+
 			// "appId": "wxfc0e0b54f9463555",//苏州英格玛人力资源有限公司(小英领活)                     (私有云 URL切记要改)
 			// "appId": "wxc08326b22c8739e8",//武汉起点人力资源股份有限公司(起点灵创)                   (私有云 URL切记要改)
 			// "appId": "wx6e6fb24e860ffbbb",//海峡人力云(浙江)智能科技有限公司(海峡人力云)             (私有云 URL切记要改)
-		
+
 		},
-		
+
 		beforeCreate: function() {},
-		
+
 		onLaunch: function() {
 			wxRequest.defaults.baseURL = this.globalData.baseUrl;
 			uni.login({
@@ -108,20 +108,29 @@
 					}
 
 					this.getTokenByCode(params).then((data) => {
+						if (data && data.code >= 300) {
+							uni.showToast({
+								icon: 'none',
+								title: data.message,
+								duration: 2000
+							});
+						} else {
 							this.getLocation()
+						}
+
 					})
 				}
 			});
 		},
 
 		onShow: function() {
-			console.log('App Show')
+			// console.log('App Show')
 		},
 
 		onHide: function() {
-			console.log('App Hide')
+			// console.log('App Hide')
 		},
-		
+
 		computed: {
 			...mapState('authed', [
 				'userInfo',
@@ -136,9 +145,15 @@
 			]),
 			...mapActions('home', [
 				'getTaskListAction',
+				'getRecommentdTaskAction',
+				'getWithdrawCheckAction',
+				'getIndividualPointsAction',
 			]),
 			...mapGetters('authed', [
 				'dontTokens',
+			]),
+			...mapMutations('authed', [
+				'getLocationMutations',
 			]),
 
 			getLocation: function() {
@@ -146,31 +161,39 @@
 				uni.getLocation({
 					type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用wx.openLocation 的坐标
 					success: function(res) {
+
+						_this.getLocationMutations(res)
 						let params = [];
 						params.push('?longitude=' + res.longitude)
 						params.push('&latitude=' + res.latitude)
 
 						_this.getCityName(params.join('')).then((data) => {
-							
+
 							let values = [];
 							values.push('?limit=10')
 							values.push('&offset=0')
 							values.push('&home=y')
 							values.push('&lat=' + res.latitude)
 							values.push('&lng=' + res.longitude)
-							if(data && data.code > 300 ) {
+							if (data && data.code > 300) {
 								values.push('&province_code=110000')
-								
+
 							} else {
 								values.push('&province_code=' + data.province_code)
-								if (data.province_name != '北京市' && data.province_name != '天津市' && data.province_name != '上海市' && data.province_name != '重庆市') {
+								if (data.province_name != '北京市' && data.province_name != '天津市' && data.province_name != '上海市' && data.province_name !=
+									'重庆市') {
 									values.push('&city_code=' + data.city_code)
 								}
 							}
-							
-							console.log('_this.userInfo....', _this.userInfo)
-							if(_this.userInfo.type == 1) {
+
+							// console.log('userInfo....', _this.userInfo)
+							if (_this.userInfo.type == 1) {
 								_this.getTaskListAction(values.join(''))
+								_this.getRecommentdTaskAction('?offset=0&limit=1')
+								_this.getWithdrawCheckAction()
+								_this.getIndividualPointsAction()
+								
+								
 							}
 							// let cityName = ''
 							// if (data && data.city.indexOf('市') != -1) {

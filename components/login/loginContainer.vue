@@ -41,9 +41,6 @@
 
 		methods: {
 			...mapActions('authed',['getBindMobileAction']),
-			// ...mapGetters('authed', [
-			// 	'dontTokens',
-			// ]),
 
 			getPhoneNumber(e) {
 				// console.log(e)
@@ -60,7 +57,6 @@
 						showCancel: false,
 						content: '同意授权',
 						success: function(res) {
-							console.log(_this)
 							_this.bindMobile(e.detail);
 						}
 					})
@@ -68,7 +64,6 @@
 			},
 
 			bindMobile(value) {
-				console.log(value)
 				const appId = getApp().globalData.appId;
 				const {
 					tenant,
@@ -83,6 +78,7 @@
 					"wx_open_id": user.wx_open_id, //可选，如果传了，绑定到对应的微信号
 				}
 				
+					
 				this.getBindMobileAction(params)
 			},
 

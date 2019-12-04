@@ -23,3 +23,9 @@ export const getBindMobileActionUtils = (params) => {
 	const url = 'uaa/v1/users/op/bind-mobile';
 	return request.post(url, params);
 }
+
+//发送验证码
+export const getSmsCodeActionUtils = (params) => {
+	const url = 'sms/v1/sms_codes';
+	return request.post(url, params);
+}

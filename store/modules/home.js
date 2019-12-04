@@ -5,6 +5,9 @@ import { mutations } from '../mutations/home'
 const state = {
 	taskList: [],
 	taskDetails: {},
+	singTaskList: {},
+	withdrawCheck: {},
+	individualPoints: {},
 }
 
 export default {

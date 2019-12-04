@@ -10,7 +10,12 @@
 /* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));
-var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 17));
+
+var _ysValidate = _interopRequireDefault(__webpack_require__(/*! js_sdk/fshjie-formvalidate/ys-validate.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+// validate验证
+_vue.default.prototype.$validate = _ysValidate.default;
 
 _vue.default.config.productionTip = false;
 
@@ -19,7 +24,8 @@ _vue.default.prototype.$store = _store.default;
 _App.default.mpType = 'app';
 
 var app = new _vue.default(_objectSpread({
-  store: _store.default },
+  store: _store.default,
+  validate: _ysValidate.default },
 _App.default));
 
 createApp(app).$mount();
@@ -127,7 +133,7 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
 
 
     "appId": "wxd77d768a54c1a6ed" //社会化用工
-    // "appId":'wxacb81f2785bbed2b'//方圆零工
+    // "appId": 'wxacb81f2785bbed2b' //方圆零工
     // "appId": 'wxa3306c52497202a4'//天宇人力
     // "appId": 'wx0b015904869974f2'//三一(石力速派)
     // "appId": 'wxb6d75b24391c6d9e'//幺零幺零工
@@ -205,18 +211,27 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
 
 
         _this2.getTokenByCode(params).then(function (data) {
-          _this2.getLocation();
+          if (data && data.code >= 300) {
+            uni.showToast({
+              icon: 'none',
+              title: data.message,
+              duration: 2000 });
+
+          } else {
+            _this2.getLocation();
+          }
+
         });
       } });
 
   },
 
   onShow: function onShow() {
-    console.log('App Show');
+    // console.log('App Show')
   },
 
   onHide: function onHide() {
-    console.log('App Hide');
+    // console.log('App Hide')
   },
 
   computed: _objectSpread({},
@@ -232,10 +247,16 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
   'getProvinceCityCode']),
 
   (0, _vuex.mapActions)('home', [
-  'getTaskListAction']),
+  'getTaskListAction',
+  'getRecommentdTaskAction',
+  'getWithdrawCheckAction',
+  'getIndividualPointsAction']),
 
   (0, _vuex.mapGetters)('authed', [
-  'dontTokens']), {
+  'dontTokens']),
+
+  (0, _vuex.mapMutations)('authed', [
+  'getLocationMutations']), {
 
 
     getLocation: function getLocation() {
@@ -243,6 +264,8 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
       uni.getLocation({
         type: 'wgs84', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用wx.openLocation 的坐标
         success: function success(res) {
+
+          _this.getLocationMutations(res);
           var params = [];
           params.push('?longitude=' + res.longitude);
           params.push('&latitude=' + res.latitude);
@@ -260,14 +283,20 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
 
             } else {
               values.push('&province_code=' + data.province_code);
-              if (data.province_name != '北京市' && data.province_name != '天津市' && data.province_name != '上海市' && data.province_name != '重庆市') {
+              if (data.province_name != '北京市' && data.province_name != '天津市' && data.province_name != '上海市' && data.province_name !=
+              '重庆市') {
                 values.push('&city_code=' + data.city_code);
               }
             }
 
-            console.log('_this.userInfo....', _this.userInfo);
+            // console.log('userInfo....', _this.userInfo)
             if (_this.userInfo.type == 1) {
               _this.getTaskListAction(values.join(''));
+              _this.getRecommentdTaskAction('?offset=0&limit=1');
+              _this.getWithdrawCheckAction();
+              _this.getIndividualPointsAction();
+
+
             }
             // let cityName = ''
             // if (data && data.city.indexOf('市') != -1) {

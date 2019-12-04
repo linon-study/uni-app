@@ -1,0 +1,135 @@
+.container {
+  height: 100%;
+  min-height: 100%;
+}
+.container .login_group {
+  position: relative;
+  height: 272rpx;
+  width: 100%;
+  background: white;
+}
+.container .login_group .background_img {
+  width: 100%;
+  height: 272rpx;
+  position: absolute;
+  z-index: 1;
+}
+.container .login_group .user_info {
+  width: 100%;
+  height: 272rpx;
+  position: absolute;
+  z-index: 300;
+  padding-top: 60rpx;
+}
+.container .login_group .user_info .user_avatar {
+  width: 116rpx;
+  height: 116rpx;
+  margin-left: 100rpx;
+  float: left;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+}
+.container .login_group .user_info .user_avatar image {
+  width: 100%;
+  height: 100%;
+}
+.container .login_group .user_info text {
+  color: white;
+  font-size: 36rpx;
+  float: left;
+  margin: 32rpx 0 0 30rpx;
+}
+.container .login_group .user_info .points {
+  color: #252525;
+  font-size: 30rpx;
+  background: #f5a623;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  border-top-left-radius: 35rpx;
+  border-bottom-left-radius: 35rpx;
+  float: right;
+  margin-top: 30rpx;
+  padding-left: 14rpx;
+}
+.container .perosn_info {
+  margin: 40rpx 0 60rpx 0;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row nowrap;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+.container .perosn_info .info_item {
+  width: 320rpx;
+  height: 116rpx;
+  border: solid 4rpx #E4E7F0;
+  border-radius: 8rpx;
+}
+.container .perosn_info .info_item .person_pic {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 24rpx 20rpx;
+  margin-top: 30rpx;
+}
+.container .perosn_info .info_item view {
+  vertical-align: top;
+  display: inline-block;
+  width: 170rpx;
+  font-size: 28rpx;
+  color: #08162A;
+  margin: 20rpx 0 0 0;
+}
+.container .perosn_info .info_item view .text_bottom {
+  display: inline-block;
+  color: #838A94;
+  font-size: 22rpx;
+}
+.container .perosn_info .info_item .person_arrow {
+  vertical-align: top;
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 50rpx;
+  margin-right: 20rpx;
+}
+.container .task_status {
+  padding: 16rpx 0;
+  background: white;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row nowrap;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+}
+.container .task_status .task_item {
+  width: 25%;
+  position: relative;
+  text-align: center;
+  font-size: 24rpx;
+  color: #252525;
+}
+.container .task_status .task_item image {
+  width: 54rpx;
+  height: 54rpx;
+}
+.container .task_status .task_item uni-badge {
+  position: absolute;
+  top: -15rpx;
+  right: 35rpx;
+}
+

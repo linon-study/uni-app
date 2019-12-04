@@ -4,10 +4,12 @@
 		<view class='head'>
 			<image src='../../static/img/head.png'></image>
 			<view v-if="isLogin">
-				<view v-if="integral_show&&noIntegral_show" class='common integral'>
+				<view v-if="individualPoints.points>0" class='common integral'>
 					<text>积分</text>
-					<text class="num">{{points}}</text>
-					<!-- <button class='withdraw'>提现</button> -->
+					<text class="num">{{1}}</text>
+					<view v-if="withdrawCheck.has" >
+						<button @tap='onTapWithdraw'>提现</button>
+					</view>
 				</view>
 				<view v-else class='common noIntegral'>
 					<text>还没有积分，赶快去赚取积分吧~</text>
@@ -17,7 +19,7 @@
 			<view v-else>
 				<view class='common no_login'>
 					<text>登录后发现更多任务</text>
-					<button @tap="bindLogin" >去登录</button>
+					<button @tap="bindLogin">去登录</button>
 				</view>
 			</view>
 
@@ -34,13 +36,8 @@
 			</view>
 
 			<!-- 任务列表  -->
+			<TaskList></TaskList>
 
-			<TaskList ></TaskList>
-			<!-- <view>
-				<view v-for="(item, index) in taskList.items" :key="index" >
-					{{item.name}}
-				</view>
-			</view> -->
 		</view>
 
 	</view>
@@ -61,46 +58,69 @@
 	export default {
 
 		onLoad() {
-			console.log('onLoad.....', this.dontTokens())
+			if (this.userInfo && this.userInfo.type == 1) {
+				let values = [];
+				values.push('?limit=10')
+				values.push('&offset=0')
+				values.push('&home=y')
+				values.push('&lat=' + this.latitudeAndLongitude.latitude)
+				values.push('&lng=' + this.latitudeAndLongitude.longitude)
+				values.push('&province_code=' + this.cityCode.province_code)
+				if (this.cityCode.province != '北京市' &&
+					this.cityCode.province != '天津市' &&
+					this.cityCode.province != '上海市' &&
+					this.cityCode.province != '重庆市') {
+					values.push('&city_code=' + this.cityCode.city_code)
+				}
+
+				this.getTaskListAction(values.join(''))
+				this.getRecommentdTaskAction('?offset=0&limit=1')
+				this.getWithdrawCheckAction()
+				this.getIndividualPointsAction()
+			}
 		},
-		
+
 		computed: {
 			...mapState('authed', [
 				'isLogin',
 				'tokens',
+				'latitudeAndLongitude',
+				'cityCode',
+				'userInfo'
 			]),
 			...mapState('home', [
-				'taskList',
-			])
+				'singTaskList',
+				'withdrawCheck',
+				'individualPoints',
+			]),
+
 		},
-		
+
 		components: {
 			uniPopup,
 			TaskList,
 		},
 
 		methods: {
-			// ...mapActions('authed',['getTokenByCodeAction']),
-			...mapGetters('authed', [
-				'dontTokens',
+			...mapActions('home', [
+				'getTaskListAction',
+				'getRecommentdTaskAction',
+				'getWithdrawCheckAction',
+				'getIndividualPointsAction',
 			]),
-
+			
+			//登录
 			bindLogin() {
 				uni.navigateTo({
 					url: '../../components/login/loginContainer',
 				});
 			},
-			bindLogout() {
-				this.logout();
-				/**
-				 * 如果需要强制登录跳转回登录页面
-				 */
-				if (this.forcedLogin) {
-					uni.reLaunch({
-						url: '../login/login',
-					});
-				}
-			}
+			
+			//提现
+			onTapWithdraw() {
+				
+			},
+			
 		}
 	}
 </script>
@@ -109,6 +129,7 @@
 	.container {
 		width: 100%;
 		min-height: 100%;
+
 		.head {
 			position: relative;
 			height: 480rpx;
