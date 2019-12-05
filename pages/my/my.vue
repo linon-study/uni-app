@@ -125,6 +125,13 @@
 			...mapActions('message', [
 				'getMessageListAction',
 			]),
+			
+			//登录
+			onTapLogin() {
+				uni.navigateTo({
+					url: '../../components/login/loginContainer',
+				});
+			},
 
 		}
 	}

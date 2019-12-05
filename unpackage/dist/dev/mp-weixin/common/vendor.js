@@ -2460,7 +2460,27 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 121:
+/***/ 13:
+/*!****************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/static/js/wechat-request.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/*!
+               * 
+               * author : 7548764@qq.com
+               * github : https://github.com/hatedMe/wechat-request
+               * version : 2.1.0
+               * 		
+               */
+!function (e, t) {if (true) module.exports = t();else { var n, r; }}(window, function () {return function (e) {var t = {};function r(n) {if (t[n]) return t[n].exports;var o = t[n] = { i: n, l: !1, exports: {} };return e[n].call(o.exports, o, o.exports, r), o.l = !0, o.exports;}return r.m = e, r.c = t, r.d = function (e, t, n) {r.o(e, t) || Object.defineProperty(e, t, { configurable: !1, enumerable: !0, get: n });}, r.r = function (e) {Object.defineProperty(e, "__esModule", { value: !0 });}, r.n = function (e) {var t = e && e.__esModule ? function () {return e.default;} : function () {return e;};return r.d(t, "a", t), t;}, r.o = function (e, t) {return Object.prototype.hasOwnProperty.call(e, t);}, r.p = "", r(r.s = 6);}([function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {return typeof e;} : function (e) {return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;},o = t.bind = function (e, t) {return function () {return e.apply(t, Array.from(arguments));};},u = (t.extend = function (e, t, r) {return Object.getOwnPropertyNames(t).forEach(function (n) {r && "function" == typeof t[n] ? e[n] = o(t[n], r) : e[n] = t[n];}), e;}, t.copyobj = function (e, t) {return Object.assign({}, e, t);}, t.merge = function e() {var t = {};return Array.from(arguments).forEach(function (r) {for (var o in r) {"object" !== n(r[o]) || u(r[o]) || e(t[o], r[o]), t[o] = r[o];}}), t;}, t.deepMerge = function e() {var t = {};return Array.from(arguments).forEach(function (r) {r && "object" === (void 0 === r ? "undefined" : n(r)) && !u(r) && Object.keys(r).forEach(function (o) {if ("object" === n(r[o])) return t[o] = e(t[o], r[o]);t[o] = r[o];});}), t;}, t.isEmptyObject = function (e) {return 0 === Object.getOwnPropertyNames(e).length;});function a(e) {return encodeURIComponent(e).replace(/%40/gi, "@").replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");}t.combineURLs = function (e, t) {return t ? e.replace(/\/+$/, "") + "/" + t.replace(/^\/+/, "") : e;}, t.buildURL = function (e, t) {if (!t || u(t)) return e;var r = [];return Object.keys(t).forEach(function (e) {r.push(a(e) + "=" + a(t[e]));}), e + (-1 === e.indexOf("?") ? "?" : "&") + r.join("&");}, t.isAbsoluteURL = function (e) {return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(e);};}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0)),o = { "Content-Type": "application/x-www-form-urlencoded" },u = { method: "get", dataType: "json", responseType: "text", headers: {}, transformRequest: function transformRequest(e) {return e;} };u.headers = { common: { Accept: "application/json, text/plain, */*" } }, ["delete", "get", "head", "post", "put", "patch"].map(function (e) {u.headers[e] = n.merge(u.headers, o);}), t.default = u;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 }), t.dispatchRequest = void 0;var n = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0));t.dispatchRequest = function (e) {e.baseURL && !n.isAbsoluteURL(e.url) && (e.url = n.combineURLs(e.baseURL, e.url)), e.url = n.buildURL(e.url, e.params), e.data = n.merge(e.data, e.transformRequest(e.data)), e.headers = n.merge(e.headers.common || {}, e.headers[e.method] || {}, e.headers || {}), ["delete", "get", "head", "post", "put", "patch", "common"].forEach(function (t) {delete e.headers[t];});var t = Promise.resolve(e);return t.then(function (e) {return new Promise(function (t, r) {var n = wx.request({ url: e.url, data: e.data || {}, header: e.headers, method: e.method, dataType: e.dataType, success: function success(e) {t({ data: e.data, headers: e.header, status: e.statusCode, statusText: "ok" });}, fail: function fail(e) {r(e);}, complete: function complete() {e.complete && e.complete();} });e.timeout && "number" == typeof e.timeout && e.timeout > 1e3 && setTimeout(function () {n.abort(), t({ status: "canceled" });}, e.timeout);});});};}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = function () {function e(e, t) {for (var r = 0; r < t.length; r++) {var n = t[r];n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);}}return function (t, r, n) {return r && e(t.prototype, r), n && e(t, n), t;};}(),o = function () {function e() {!function (e, t) {if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");}(this, e), this.handlers = [];}return n(e, [{ key: "use", value: function value(e, t) {return this.handlers.push({ fulfilled: e, rejected: t }), this.handlers.length - 1;} }, { key: "eject", value: function value(e) {this.handlers[e] && (this.handlers[e] = null);} }, { key: "forEach", value: function value(e) {this.handlers.forEach(function (t) {null !== t && e(t);});} }]), e;}();t.default = o;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n,o = function () {function e(e, t) {for (var r = 0; r < t.length; r++) {var n = t[r];n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);}}return function (t, r, n) {return r && e(t.prototype, r), n && e(t, n), t;};}(),u = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0)),a = (n = r(3)) && n.__esModule ? n : { default: n },i = r(2),c = function () {function e(t) {!function (e, t) {if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");}(this, e), this.defaults = t, this.interceptors = { request: new a.default(), response: new a.default() };}return o(e, [{ key: "request", value: function value(e) {"string" == typeof e && (e = u.merge({ url: arguments[0] }, arguments[1])), (e = u.deepMerge(this.defaults, e)).method = e.method ? e.method.toLowerCase() : "get";var t = [i.dispatchRequest, void 0],r = Promise.resolve(e);for (this.interceptors.request.forEach(function (e) {t.unshift(e.fulfilled, e.rejected);}), this.interceptors.response.forEach(function (e) {t.push(e.fulfilled, e.rejected);}); t.length;) {r = r.then(t.shift(), t.shift());}return r;} }, { key: "all", value: function value(e) {return Promise.all(e);} }]), e;}();["delete", "get", "head", "options", "trace"].forEach(function (e) {c.prototype[e] = function (t, r) {return this.request(u.merge(r || {}, { method: e, url: t }));};}), ["post", "put", "patch"].forEach(function (e) {c.prototype[e] = function (t, r, n) {return this.request(u.merge(n || {}, { method: e, url: t, data: r }));};}), t.default = c;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = a(r(4)),o = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0)),u = a(r(1));function a(e) {return e && e.__esModule ? e : { default: e };}function i(e) {var t = new n.default(e),r = o.bind(n.default.prototype.request, t);return o.extend(r, n.default.prototype, t), o.extend(r, t), r;}var c = i(u.default);c.create = function (e) {return i(o.merge(u.default, e));}, c.spread = function (e) {return function () {for (var t = arguments.length, r = Array(t), n = 0; n < t; n++) {r[n] = arguments[n];}return e.apply(null, [].concat(r));};}, t.default = c;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n,o = (n = r(5)) && n.__esModule ? n : { default: n };t.default = o.default;}]);});
+
+/***/ }),
+
+/***/ 137:
 /*!*****************************************************************************************!*\
   !*** D:/project/weixin/flx-uniapp/node_modules/@dcloudio/uni-ui/lib/uni-icons/icons.js ***!
   \*****************************************************************************************/
@@ -2563,143 +2583,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   'closefill': "\uE589",
   'sound': "\uE590",
   'scan': "\uE612" };exports.default = _default;
-
-/***/ }),
-
-/***/ 13:
-/*!****************************************************************!*\
-  !*** D:/project/weixin/flx-uniapp/static/js/wechat-request.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/*!
-               * 
-               * author : 7548764@qq.com
-               * github : https://github.com/hatedMe/wechat-request
-               * version : 2.1.0
-               * 		
-               */
-!function (e, t) {if (true) module.exports = t();else { var n, r; }}(window, function () {return function (e) {var t = {};function r(n) {if (t[n]) return t[n].exports;var o = t[n] = { i: n, l: !1, exports: {} };return e[n].call(o.exports, o, o.exports, r), o.l = !0, o.exports;}return r.m = e, r.c = t, r.d = function (e, t, n) {r.o(e, t) || Object.defineProperty(e, t, { configurable: !1, enumerable: !0, get: n });}, r.r = function (e) {Object.defineProperty(e, "__esModule", { value: !0 });}, r.n = function (e) {var t = e && e.__esModule ? function () {return e.default;} : function () {return e;};return r.d(t, "a", t), t;}, r.o = function (e, t) {return Object.prototype.hasOwnProperty.call(e, t);}, r.p = "", r(r.s = 6);}([function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (e) {return typeof e;} : function (e) {return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e;},o = t.bind = function (e, t) {return function () {return e.apply(t, Array.from(arguments));};},u = (t.extend = function (e, t, r) {return Object.getOwnPropertyNames(t).forEach(function (n) {r && "function" == typeof t[n] ? e[n] = o(t[n], r) : e[n] = t[n];}), e;}, t.copyobj = function (e, t) {return Object.assign({}, e, t);}, t.merge = function e() {var t = {};return Array.from(arguments).forEach(function (r) {for (var o in r) {"object" !== n(r[o]) || u(r[o]) || e(t[o], r[o]), t[o] = r[o];}}), t;}, t.deepMerge = function e() {var t = {};return Array.from(arguments).forEach(function (r) {r && "object" === (void 0 === r ? "undefined" : n(r)) && !u(r) && Object.keys(r).forEach(function (o) {if ("object" === n(r[o])) return t[o] = e(t[o], r[o]);t[o] = r[o];});}), t;}, t.isEmptyObject = function (e) {return 0 === Object.getOwnPropertyNames(e).length;});function a(e) {return encodeURIComponent(e).replace(/%40/gi, "@").replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");}t.combineURLs = function (e, t) {return t ? e.replace(/\/+$/, "") + "/" + t.replace(/^\/+/, "") : e;}, t.buildURL = function (e, t) {if (!t || u(t)) return e;var r = [];return Object.keys(t).forEach(function (e) {r.push(a(e) + "=" + a(t[e]));}), e + (-1 === e.indexOf("?") ? "?" : "&") + r.join("&");}, t.isAbsoluteURL = function (e) {return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(e);};}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0)),o = { "Content-Type": "application/x-www-form-urlencoded" },u = { method: "get", dataType: "json", responseType: "text", headers: {}, transformRequest: function transformRequest(e) {return e;} };u.headers = { common: { Accept: "application/json, text/plain, */*" } }, ["delete", "get", "head", "post", "put", "patch"].map(function (e) {u.headers[e] = n.merge(u.headers, o);}), t.default = u;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 }), t.dispatchRequest = void 0;var n = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0));t.dispatchRequest = function (e) {e.baseURL && !n.isAbsoluteURL(e.url) && (e.url = n.combineURLs(e.baseURL, e.url)), e.url = n.buildURL(e.url, e.params), e.data = n.merge(e.data, e.transformRequest(e.data)), e.headers = n.merge(e.headers.common || {}, e.headers[e.method] || {}, e.headers || {}), ["delete", "get", "head", "post", "put", "patch", "common"].forEach(function (t) {delete e.headers[t];});var t = Promise.resolve(e);return t.then(function (e) {return new Promise(function (t, r) {var n = wx.request({ url: e.url, data: e.data || {}, header: e.headers, method: e.method, dataType: e.dataType, success: function success(e) {t({ data: e.data, headers: e.header, status: e.statusCode, statusText: "ok" });}, fail: function fail(e) {r(e);}, complete: function complete() {e.complete && e.complete();} });e.timeout && "number" == typeof e.timeout && e.timeout > 1e3 && setTimeout(function () {n.abort(), t({ status: "canceled" });}, e.timeout);});});};}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = function () {function e(e, t) {for (var r = 0; r < t.length; r++) {var n = t[r];n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);}}return function (t, r, n) {return r && e(t.prototype, r), n && e(t, n), t;};}(),o = function () {function e() {!function (e, t) {if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");}(this, e), this.handlers = [];}return n(e, [{ key: "use", value: function value(e, t) {return this.handlers.push({ fulfilled: e, rejected: t }), this.handlers.length - 1;} }, { key: "eject", value: function value(e) {this.handlers[e] && (this.handlers[e] = null);} }, { key: "forEach", value: function value(e) {this.handlers.forEach(function (t) {null !== t && e(t);});} }]), e;}();t.default = o;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n,o = function () {function e(e, t) {for (var r = 0; r < t.length; r++) {var n = t[r];n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(e, n.key, n);}}return function (t, r, n) {return r && e(t.prototype, r), n && e(t, n), t;};}(),u = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0)),a = (n = r(3)) && n.__esModule ? n : { default: n },i = r(2),c = function () {function e(t) {!function (e, t) {if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");}(this, e), this.defaults = t, this.interceptors = { request: new a.default(), response: new a.default() };}return o(e, [{ key: "request", value: function value(e) {"string" == typeof e && (e = u.merge({ url: arguments[0] }, arguments[1])), (e = u.deepMerge(this.defaults, e)).method = e.method ? e.method.toLowerCase() : "get";var t = [i.dispatchRequest, void 0],r = Promise.resolve(e);for (this.interceptors.request.forEach(function (e) {t.unshift(e.fulfilled, e.rejected);}), this.interceptors.response.forEach(function (e) {t.push(e.fulfilled, e.rejected);}); t.length;) {r = r.then(t.shift(), t.shift());}return r;} }, { key: "all", value: function value(e) {return Promise.all(e);} }]), e;}();["delete", "get", "head", "options", "trace"].forEach(function (e) {c.prototype[e] = function (t, r) {return this.request(u.merge(r || {}, { method: e, url: t }));};}), ["post", "put", "patch"].forEach(function (e) {c.prototype[e] = function (t, r, n) {return this.request(u.merge(n || {}, { method: e, url: t, data: r }));};}), t.default = c;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n = a(r(4)),o = function (e) {if (e && e.__esModule) return e;var t = {};if (null != e) for (var r in e) {Object.prototype.hasOwnProperty.call(e, r) && (t[r] = e[r]);}return t.default = e, t;}(r(0)),u = a(r(1));function a(e) {return e && e.__esModule ? e : { default: e };}function i(e) {var t = new n.default(e),r = o.bind(n.default.prototype.request, t);return o.extend(r, n.default.prototype, t), o.extend(r, t), r;}var c = i(u.default);c.create = function (e) {return i(o.merge(u.default, e));}, c.spread = function (e) {return function () {for (var t = arguments.length, r = Array(t), n = 0; n < t; n++) {r[n] = arguments[n];}return e.apply(null, [].concat(r));};}, t.default = c;}, function (e, t, r) {"use strict";Object.defineProperty(t, "__esModule", { value: !0 });var n,o = (n = r(5)) && n.__esModule ? n : { default: n };t.default = o.default;}]);});
-
-/***/ }),
-
-/***/ 143:
-/*!*************************************************************!*\
-  !*** D:/project/weixin/flx-uniapp/store/modules/message.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = __webpack_require__(/*! ../actions/message */ 144);
-var _message2 = __webpack_require__(/*! ../getters/message */ 146);
-var _message3 = __webpack_require__(/*! ../mutations/message */ 147);
-
-var state = {
-  messageList: [] };var _default =
-
-
-{
-  namespaced: true,
-  state: state,
-  actions: _message.actions,
-  getters: _message2.getters,
-  mutations: _message3.mutations };exports.default = _default;
-
-/***/ }),
-
-/***/ 144:
-/*!*************************************************************!*\
-  !*** D:/project/weixin/flx-uniapp/store/actions/message.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
-
-
-
-var _message = __webpack_require__(/*! ../../utils/message */ 145);function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}
-
-
-
-var actions = {
-  //任务列表
-  getMessageListAction: function getMessageListAction(_ref,
-
-  params) {var commit = _ref.commit;
-    console.log('params......', params);
-    return (0, _message.getMessageListUtils)(params).
-    then(function (data) {
-      if (data && data.code >= 300) {
-        uni.showToast({
-          icon: 'none',
-          title: data.message,
-          duration: 2000 });
-
-      } else {
-        commit(types.MESSAGE_LIST, data.items);
-      }
-    }).
-    catch(function (err) {
-      throw err;
-    });
-  } };exports.actions = actions;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 145:
-/*!*****************************************************!*\
-  !*** D:/project/weixin/flx-uniapp/utils/message.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getMessageListUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-//获取消息列表
-var getMessageListUtils = function getMessageListUtils(params) {
-  var url = 'messagemgm/v1/messages' + params;
-  return _request.default.get(url, params);
-};exports.getMessageListUtils = getMessageListUtils;
-
-/***/ }),
-
-/***/ 146:
-/*!*************************************************************!*\
-  !*** D:/project/weixin/flx-uniapp/store/getters/message.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getters = void 0;var getters = {
-  dontTokens: function dontTokens(state) {
-    return state.tokens;
-  } };exports.getters = getters;
-
-/***/ }),
-
-/***/ 147:
-/*!***************************************************************!*\
-  !*** D:/project/weixin/flx-uniapp/store/mutations/message.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.mutations = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
-
-var mutations = _defineProperty({},
-types.MESSAGE_LIST, function (state, data) {
-  state.messageList = data;
-});exports.mutations = mutations;
 
 /***/ }),
 
@@ -2822,7 +2705,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 12));
 var _authed = _interopRequireDefault(__webpack_require__(/*! ./modules/authed */ 18));
 var _home = _interopRequireDefault(__webpack_require__(/*! ./modules/home */ 25));
-var _message = _interopRequireDefault(__webpack_require__(/*! ./modules/message */ 143));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _message = _interopRequireDefault(__webpack_require__(/*! ./modules/message */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 _vue.default.use(_vuex.default);
 
@@ -9438,6 +9321,123 @@ module.exports = g;
 /***/ }),
 
 /***/ 30:
+/*!*************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/modules/message.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _message = __webpack_require__(/*! ../actions/message */ 31);
+var _message2 = __webpack_require__(/*! ../getters/message */ 33);
+var _message3 = __webpack_require__(/*! ../mutations/message */ 34);
+
+var state = {
+  messageList: [] };var _default =
+
+
+{
+  namespaced: true,
+  state: state,
+  actions: _message.actions,
+  getters: _message2.getters,
+  mutations: _message3.mutations };exports.default = _default;
+
+/***/ }),
+
+/***/ 31:
+/*!*************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/actions/message.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.actions = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));
+
+
+
+var _message = __webpack_require__(/*! ../../utils/message */ 32);function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}
+
+
+
+var actions = {
+  //任务列表
+  getMessageListAction: function getMessageListAction(_ref,
+
+  params) {var commit = _ref.commit;
+    console.log('params......', params);
+    return (0, _message.getMessageListUtils)(params).
+    then(function (data) {
+      if (data && data.code >= 300) {
+        uni.showToast({
+          icon: 'none',
+          title: data.message,
+          duration: 2000 });
+
+      } else {
+        commit(types.MESSAGE_LIST, data.items);
+      }
+    }).
+    catch(function (err) {
+      throw err;
+    });
+  } };exports.actions = actions;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 32:
+/*!*****************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/utils/message.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getMessageListUtils = void 0;var _request = _interopRequireDefault(__webpack_require__(/*! ./request */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+//获取消息列表
+var getMessageListUtils = function getMessageListUtils(params) {
+  var url = 'messagemgm/v1/messages' + params;
+  return _request.default.get(url, params);
+};exports.getMessageListUtils = getMessageListUtils;
+
+/***/ }),
+
+/***/ 33:
+/*!*************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/getters/message.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.getters = void 0;var getters = {
+  dontTokens: function dontTokens(state) {
+    return state.tokens;
+  } };exports.getters = getters;
+
+/***/ }),
+
+/***/ 34:
+/*!***************************************************************!*\
+  !*** D:/project/weixin/flx-uniapp/store/mutations/message.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.mutations = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ../constants/types */ 20));function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;} else {var newObj = {};if (obj != null) {for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};if (desc.get || desc.set) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}}newObj.default = obj;return newObj;}}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+var mutations = _defineProperty({},
+types.MESSAGE_LIST, function (state, data) {
+  state.messageList = data;
+});exports.mutations = mutations;
+
+/***/ }),
+
+/***/ 35:
 /*!******************************************************************************!*\
   !*** D:/project/weixin/flx-uniapp/js_sdk/fshjie-formvalidate/ys-validate.js ***!
   \******************************************************************************/

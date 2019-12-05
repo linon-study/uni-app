@@ -19,7 +19,7 @@
 			<view v-else>
 				<view class='common no_login'>
 					<text>登录后发现更多任务</text>
-					<button @tap="bindLogin">去登录</button>
+					<button @tap="onTapLogin">去登录</button>
 				</view>
 			</view>
 
@@ -58,6 +58,7 @@
 	export default {
 
 		onLoad() {
+			console.log('onLoad....')
 			if (this.userInfo && this.userInfo.type == 1) {
 				let values = [];
 				values.push('?limit=10')
@@ -110,8 +111,8 @@
 			]),
 			
 			//登录
-			bindLogin() {
-				uni.navigateTo({
+			onTapLogin() {
+				uni.redirectTo({
 					url: '../../components/login/loginContainer',
 				});
 			},

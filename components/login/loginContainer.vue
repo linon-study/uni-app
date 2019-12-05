@@ -79,11 +79,24 @@
 				}
 				
 					
-				this.getBindMobileAction(params)
+				this.getBindMobileAction(params).then(data => {
+					if (data && data.code >= 300) {
+						uni.showToast({
+							icon: 'none',
+							title: data.message,
+							duration: 2000
+						});
+					} else {
+						console.log(getCurrentPages())
+						uni.navigateBack({
+						    delta: 1
+						});
+					}
+				})
 			},
 
 			phoneLogin() {
-				uni.navigateTo({
+				uni.redirectTo({
 					url: './PhoneNumLogin',
 				});
 			},
