@@ -133,8 +133,8 @@ var _default =
 
 
   data: function data() {
-    return {
-      width: "display: inline-block;width: ".concat(String(this.text).length * 15 + 25, "rpx") };
+    return {};
+
 
   },
   methods: {

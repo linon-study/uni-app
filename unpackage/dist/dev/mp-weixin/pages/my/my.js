@@ -252,7 +252,21 @@ var _vuex = __webpack_require__(/*! vuex */ 12);var _uniListItem = function _uni
 
     //登录
     onTapLogin: function onTapLogin() {
-      uni.navigateTo({
+      uni.redirectTo({
+        url: '../../components/login/loginContainer' });
+
+    },
+
+    //设置个人信息
+    onTapUserInfo: function onTapUserInfo() {
+      uni.redirectTo({
+        url: '../../components/login/loginContainer' });
+
+    },
+
+    //上传个人资质
+    onTapQualification: function onTapQualification() {
+      uni.redirectTo({
         url: '../../components/login/loginContainer' });
 
     } }) };exports.default = _default;

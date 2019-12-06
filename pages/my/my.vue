@@ -21,7 +21,7 @@
 
 		<view class="perosn_info" v-if="isLogin">
 
-			<view class="info_item">
+			<view class="info_item" @tap="onTapUserInfo">
 				<image src='../../static/img/personPic1.png' class='person_pic'></image>
 				<view>
 					<text>个人信息</text>
@@ -30,7 +30,7 @@
 				<image src='../../static/img/33.png' class='person_arrow'></image>
 			</view>
 
-			<view class="info_item">
+			<view class="info_item" @tap="onTapQualification">
 				<image src='../../static/img/personPic2.png' class='person_pic'></image>
 				<view>
 					<text>个人资质</text>
@@ -128,10 +128,25 @@
 			
 			//登录
 			onTapLogin() {
-				uni.navigateTo({
+				uni.redirectTo({
 					url: '../../components/login/loginContainer',
 				});
 			},
+			
+			//设置个人信息
+			onTapUserInfo() {
+				uni.redirectTo({
+					url: '../../components/login/loginContainer',
+				});
+			},
+			
+			//上传个人资质
+			onTapQualification() {
+				uni.redirectTo({
+					url: '../../components/login/loginContainer',
+				});
+			},
+			
 
 		}
 	}

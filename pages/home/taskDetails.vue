@@ -29,7 +29,7 @@
 						<image src='../../static/img/time.png'></image>
 						<text>工作时间</text>
 					</view>
-					<text>{{taskDetails.monthTime}} {{taskDetails.hoursTime}}</text>
+					<text>{{this.$moment(taskDetails.daily_start_time * 1000).format('YYYY-MM-DD')}}~{{this.$moment(taskDetails.daily_end_time * 1000).format('YYYY-MM-DD')}}</text>
 				</view>
 
 				<view class='company' @tap='goDetail'>
@@ -98,13 +98,13 @@
 				this.imgUrlArray = this.doneImgUrl()
 			})
 		},
-		
+
 		computed: {
 			...mapState('home', [
 				'taskDetails',
 			])
 		},
-		
+
 		components: {},
 
 		methods: {

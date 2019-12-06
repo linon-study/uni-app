@@ -1,0 +1,24 @@
+{
+	"name": "flx-uniapp",
+	"version": "1.0.0",
+	"description": "",
+	"main": "main.js",
+	"dependencies": {
+		"@dcloudio/uni-ui": "^1.1.102",
+		"moment": "^2.24.0"
+	},
+	"devDependencies": {},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://linon-study:geng920526@github.com/linon-study/flx-uniapp.git"
+	},
+	"author": "genglw",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/linon-study/flx-uniapp/issues"
+	},
+	"homepage": "https://github.com/linon-study/flx-uniapp#readme"
+}

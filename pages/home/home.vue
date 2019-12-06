@@ -59,7 +59,7 @@
 
 		onLoad() {
 			console.log('onLoad....')
-			if (this.userInfo && this.userInfo.type == 1) {
+			if (this.isLogin) {
 				let values = [];
 				values.push('?limit=10')
 				values.push('&offset=0')
@@ -84,10 +84,8 @@
 		computed: {
 			...mapState('authed', [
 				'isLogin',
-				'tokens',
 				'latitudeAndLongitude',
 				'cityCode',
-				'userInfo'
 			]),
 			...mapState('home', [
 				'singTaskList',

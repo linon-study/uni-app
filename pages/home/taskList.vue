@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<block v-for="(item,index) in taskList" :key="index">
-			<view class='list' @tap="linkTaskDetails(item.id)" >
+			<view class='list' v-bind:id="item.id" @tap="linkTaskDetails" >
 				<view class='img_left'>
 					<image :src="getImage(item.store_img_url)" class='target_pic' />
 				</view>
@@ -31,7 +31,7 @@
 						<image src='../../static/img/locationDetail.png'></image>
 						<text>{{item.address}}</text>
 					</view>
-					<button class='apply_btn'>申请任务</button>
+					<button class='apply_btn' @tap.native.stop="ontapTask" >申请任务</button>
 				</view>
 			</view>
 		</block>
@@ -76,10 +76,14 @@
 					return `../../static/img/pic.png`
 				}
 			},
-			linkTaskDetails: function(id) {
+			linkTaskDetails: function(e) {
 				uni.navigateTo({
-				    url: `taskDetails?id=${id}`
+				    url: `taskDetails?id=${e.currentTarget.id}`
 				});
+			},
+			
+			ontapTask: function (e) {
+				console.log(e)
 			}
 		}
 	}

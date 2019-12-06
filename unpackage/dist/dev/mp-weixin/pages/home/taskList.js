@@ -102,10 +102,14 @@ var _vuex = __webpack_require__(/*! vuex */ 12);var _uniListItem = function _uni
         return "../../static/img/pic.png";
       }
     },
-    linkTaskDetails: function linkTaskDetails(id) {
+    linkTaskDetails: function linkTaskDetails(e) {
       uni.navigateTo({
-        url: "taskDetails?id=".concat(id) });
+        url: "taskDetails?id=".concat(e.currentTarget.id) });
 
+    },
+
+    ontapTask: function ontapTask(e) {
+      console.log(e);
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

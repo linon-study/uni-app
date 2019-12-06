@@ -183,7 +183,7 @@ var _vuex = __webpack_require__(/*! vuex */ 12);var _uniPopup = function _uniPop
 
   onLoad: function onLoad() {
     console.log('onLoad....');
-    if (this.userInfo && this.userInfo.type == 1) {
+    if (this.isLogin) {
       var values = [];
       values.push('?limit=10');
       values.push('&offset=0');
@@ -208,10 +208,8 @@ var _vuex = __webpack_require__(/*! vuex */ 12);var _uniPopup = function _uniPop
   computed: _objectSpread({},
   (0, _vuex.mapState)('authed', [
   'isLogin',
-  'tokens',
   'latitudeAndLongitude',
-  'cityCode',
-  'userInfo']),
+  'cityCode']),
 
   (0, _vuex.mapState)('home', [
   'singTaskList',

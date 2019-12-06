@@ -90,6 +90,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = this.$moment(_vm.taskDetails.daily_start_time * 1000).format(
+    "YYYY-MM-DD"
+  )
+  var g1 = this.$moment(_vm.taskDetails.daily_end_time * 1000).format(
+    "YYYY-MM-DD"
+  )
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+        g1: g1
+      }
+    }
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
