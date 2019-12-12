@@ -4,6 +4,7 @@ import {
 } from "@dcloudio/uni-ui"
 import {
 	getTokenByCodeUtils,
+	getWxAppNameUtils,
 	getCityNameUtils,
 	getProvinceCityCodeUtils,
 	getBindMobileActionUtils,
@@ -11,6 +12,8 @@ import {
 } from '../../utils/authed'
 
 export const actions = {
+	
+	//获取tokens
 	getTokenByCode({
 		commit
 	}, params) {
@@ -33,6 +36,31 @@ export const actions = {
 			});
 	},
 
+//获得AppId,小程序名称
+	getWxAppNameAction({
+		commit
+	}, params) {
+		console.log('params......', params)
+		return getWxAppNameUtils(params)
+			.then(data => {
+				if (data && data.code >= 300) {
+					uni.showToast({
+						icon: 'none',
+						title: data.message,
+						duration: 2000
+					});
+				} else {
+					commit(types.WX_APP_NAME, data, params)
+				}
+				return data
+
+			})
+			.catch(err => {
+				throw err;
+			});
+	},
+	
+	//通过经纬度获取当前城市名称
 	getCityName({
 		commit
 	}, params) {
@@ -56,6 +84,7 @@ export const actions = {
 			});
 	},
 
+//通过城市名称获取省市区code
 	getProvinceCityCode({
 		commit
 	}, params) {
@@ -78,6 +107,7 @@ export const actions = {
 			});
 	},
 
+//快速登录绑定手机号并等录
 	getBindMobileAction({
 		commit
 	}, params) {
@@ -92,8 +122,8 @@ export const actions = {
 					});
 				} else {
 					commit(types.TOKEN_BY_CODE, data)
-					uni.reLaunch({
-						url: '../../pages/home/home'
+					uni.switchTab({
+					    url: '/pages/home/home'
 					});
 				}
 				return data
@@ -104,6 +134,7 @@ export const actions = {
 			});
 	},
 
+//发送验证码
 	getSmsCodeAction({
 		commit
 	}, params) {

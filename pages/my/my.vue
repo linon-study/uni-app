@@ -99,7 +99,9 @@
 	export default {
 
 		onLoad() {
-			if (this.isLogin) {}
+			if (this.isLogin) {
+				this.getWxAppNameAction()
+			}
 		},
 
 		computed: {
@@ -122,28 +124,31 @@
 		},
 
 		methods: {
+			...mapActions('authed', [
+				'getWxAppNameAction',
+			]),
 			...mapActions('message', [
 				'getMessageListAction',
 			]),
 			
 			//登录
 			onTapLogin() {
-				uni.redirectTo({
+				uni.navigateTo({
 					url: '../../components/login/loginContainer',
 				});
 			},
 			
 			//设置个人信息
 			onTapUserInfo() {
-				uni.redirectTo({
-					url: '../../components/login/loginContainer',
+				uni.navigateTo({
+					url: '../../pages/my/personalInfo',
 				});
 			},
 			
 			//上传个人资质
 			onTapQualification() {
-				uni.redirectTo({
-					url: '../../components/login/loginContainer',
+				uni.navigateTo({
+					url: '../../pages/my/personalQualification',
 				});
 			},
 			

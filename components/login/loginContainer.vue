@@ -40,7 +40,7 @@
 		},
 
 		methods: {
-			...mapActions('authed',['getBindMobileAction']),
+			...mapActions('authed', ['getBindMobileAction']),
 
 			getPhoneNumber(e) {
 				// console.log(e)
@@ -77,26 +77,12 @@
 					"source": "wx_app::" + value.encryptedData + ":" + value.iv,
 					"wx_open_id": user.wx_open_id, //可选，如果传了，绑定到对应的微信号
 				}
-				
-					
-				this.getBindMobileAction(params).then(data => {
-					if (data && data.code >= 300) {
-						uni.showToast({
-							icon: 'none',
-							title: data.message,
-							duration: 2000
-						});
-					} else {
-						console.log(getCurrentPages())
-						uni.navigateBack({
-						    delta: 1
-						});
-					}
-				})
+
+				this.getBindMobileAction(params)
 			},
 
 			phoneLogin() {
-				uni.redirectTo({
+				uni.navigateTo({
 					url: './PhoneNumLogin',
 				});
 			},

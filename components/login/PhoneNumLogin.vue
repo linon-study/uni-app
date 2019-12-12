@@ -141,20 +141,7 @@
 						"wx_open_id": user.wx_open_id, //可选，如果传了，绑定到对应的微信号
 					}
 
-
-					this.getBindMobileAction(params).then(data => {
-						if (data && data.code >= 300) {
-							uni.showToast({
-								icon: 'none',
-								title: data.message,
-								duration: 2000
-							});
-						} else {
-							uni.navigateBack({
-								delta: 2
-							});
-						}
-					})
+					this.getBindMobileAction(params)
 				}
 			},
 		}

@@ -59,7 +59,9 @@
 
 		onLoad() {
 			console.log('onLoad....')
+			
 			if (this.isLogin) {
+				this.getWxAppNameAction()
 				let values = [];
 				values.push('?limit=10')
 				values.push('&offset=0')
@@ -101,6 +103,9 @@
 		},
 
 		methods: {
+			...mapActions('authed', [
+				'getWxAppNameAction',
+			]),
 			...mapActions('home', [
 				'getTaskListAction',
 				'getRecommentdTaskAction',
@@ -110,7 +115,7 @@
 			
 			//登录
 			onTapLogin() {
-				uni.redirectTo({
+				uni.navigateTo({
 					url: '../../components/login/loginContainer',
 				});
 			},

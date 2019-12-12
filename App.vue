@@ -115,6 +115,7 @@
 								duration: 2000
 							});
 						} else {
+							this.getWxAppNameAction()
 							this.getLocation()
 						}
 
@@ -140,6 +141,7 @@
 		methods: {
 			...mapActions('authed', [
 				'getTokenByCode',
+				'getWxAppNameAction',
 				'getCityName',
 				'getProvinceCityCode',
 			]),
