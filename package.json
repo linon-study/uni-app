@@ -7,9 +7,16 @@
 		"@dcloudio/uni-ui": "^1.1.102",
 		"moment": "^2.24.0"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"@commitlint/cli": "^8.3.3",
+		"@commitlint/config-angular": "^8.3.0",
+		"@commitlint/config-conventional": "^8.3.3",
+		"conventional-changelog-cli": "^2.0.31",
+		"husky": "^3.1.0"
+	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
 	},
 	"repository": {
 		"type": "git",
@@ -20,5 +27,10 @@
 	"bugs": {
 		"url": "https://github.com/linon-study/flx-uniapp/issues"
 	},
-	"homepage": "https://github.com/linon-study/flx-uniapp#readme"
+  "homepage": "https://github.com/linon-study/flx-uniapp#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
 }
