@@ -43,7 +43,7 @@
   text-align: center;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 12px;
-  padding: 0;
+  padding: 0px 6px;
 }
 .uni-badge--inverted.data-v-06ca2a08 {
   padding: 0 5px 0 0;

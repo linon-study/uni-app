@@ -12,7 +12,7 @@ var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));
 var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 17));
 
-var _ysValidate = _interopRequireDefault(__webpack_require__(/*! js_sdk/fshjie-formvalidate/ys-validate.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var _ysValidate = _interopRequireDefault(__webpack_require__(/*! js_sdk/fshjie-formvalidate/ys-validate.js */ 35));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 // validate验证
 _vue.default.prototype.$validate = _ysValidate.default;
@@ -132,7 +132,7 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
     // baseUrl: "http://47.110.91.56:20000/", // 预生产环境
 
 
-    "appId": "wxd77d768a54c1a6ed" //社会化用工
+    // "appId": "wxd77d768a54c1a6ed", //社会化用工
     // "appId": 'wxacb81f2785bbed2b' //方圆零工
     // "appId": 'wxa3306c52497202a4'//天宇人力
     // "appId": 'wx0b015904869974f2'//三一(石力速派)
@@ -194,6 +194,8 @@ var _wechatRequest = _interopRequireDefault(__webpack_require__(/*! ./static/js/
     // "appId": "wxfc0e0b54f9463555",//苏州英格玛人力资源有限公司(小英领活)                     (私有云 URL切记要改)
     // "appId": "wxc08326b22c8739e8",//武汉起点人力资源股份有限公司(起点灵创)                   (私有云 URL切记要改)
     // "appId": "wx6e6fb24e860ffbbb",//海峡人力云(浙江)智能科技有限公司(海峡人力云)             (私有云 URL切记要改)
+
+    "appId": "wxcc294737999df2a5" //个人使用
   },
 
 
