@@ -6,6 +6,7 @@ const state = {
 	isLogin: false,
 	Authorization: '',
 	tokens: null,
+	wxAppName: {},
 	userInfo: null,
 	latitudeAndLongitude: null,
 	cityCode: null,

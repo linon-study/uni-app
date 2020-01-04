@@ -125,13 +125,13 @@
 					console.log(this)
 					console.log(this.smsCode)
 					console.log(this.defaults.verify_code)
-					
+
 					const appId = getApp().globalData.appId;
 					const {
 						tenant,
 						user
 					} = this.tokens;
-					
+
 					const params = {
 						"mobile": this.defaults.mobile,
 						"sms_code": this.defaults.verify_code,
@@ -140,8 +140,7 @@
 						"source": "wx_app",
 						"wx_open_id": user.wx_open_id, //可选，如果传了，绑定到对应的微信号
 					}
-					
-						
+
 					this.getBindMobileAction(params)
 				}
 			},

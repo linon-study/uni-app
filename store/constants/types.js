@@ -1,5 +1,6 @@
 //登录
 export const TOKEN_BY_CODE = 'TOKEN_BY_CODE';
+export const WX_APP_NAME = 'WX_APP_NAME';
 export const GET_LOCATION = 'GET_LOCATION';
 export const CITY_CODE = 'CITY_CODE';
 export const PROVINCE_CITY_CODE = 'PROVINCE_CITY_CODE';

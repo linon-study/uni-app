@@ -6,6 +6,12 @@ export const getTokenByCodeUtils = (params) => {
 	return request.post(url, params);
 }
 
+//获得AppId,小程序名称
+export const getWxAppNameUtils = (params) => {
+	const url = 'uaa/v1/ext-app-creds';
+	return request.get(url, params);
+}
+
 //通过经纬度获取当前城市名称
 export const getCityNameUtils = (params) => {
 	const url = 'common/v1/geocode' + params;
@@ -18,7 +24,7 @@ export const getProvinceCityCodeUtils = (params) => {
 	return request.get(url, params);
 }
 
-//快速登录绑定手机号
+//快速登录绑定手机号并等录
 export const getBindMobileActionUtils = (params) => {
 	const url = 'uaa/v1/users/op/bind-mobile';
 	return request.post(url, params);

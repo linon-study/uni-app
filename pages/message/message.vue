@@ -36,6 +36,7 @@
 
 		onLoad() {
 			if (this.isLogin) {
+				this.getWxAppNameAction()
 				this.getMessageListAction('?offset=0&limit=10&category=socialwork')
 			}
 		},
@@ -55,6 +56,9 @@
 		},
 
 		methods: {
+			...mapActions('authed', [
+				'getWxAppNameAction',
+			]),
 			...mapActions('message', [
 				'getMessageListAction',
 			]),

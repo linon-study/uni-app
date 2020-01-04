@@ -19,7 +19,7 @@
 			<view v-else>
 				<view class='common no_login'>
 					<text>登录后发现更多任务</text>
-					<button @tap="bindLogin">去登录</button>
+					<button @tap="onTapLogin">去登录</button>
 				</view>
 			</view>
 
@@ -58,7 +58,10 @@
 	export default {
 
 		onLoad() {
-			if (this.userInfo && this.userInfo.type == 1) {
+			console.log('onLoad....')
+			
+			if (this.isLogin) {
+				this.getWxAppNameAction()
 				let values = [];
 				values.push('?limit=10')
 				values.push('&offset=0')
@@ -83,10 +86,8 @@
 		computed: {
 			...mapState('authed', [
 				'isLogin',
-				'tokens',
 				'latitudeAndLongitude',
 				'cityCode',
-				'userInfo'
 			]),
 			...mapState('home', [
 				'singTaskList',
@@ -102,6 +103,9 @@
 		},
 
 		methods: {
+			...mapActions('authed', [
+				'getWxAppNameAction',
+			]),
 			...mapActions('home', [
 				'getTaskListAction',
 				'getRecommentdTaskAction',
@@ -110,7 +114,7 @@
 			]),
 			
 			//登录
-			bindLogin() {
+			onTapLogin() {
 				uni.navigateTo({
 					url: '../../components/login/loginContainer',
 				});
